@@ -19,7 +19,7 @@ const mongoose = require('mongoose');
 
 const connectionString = 'mongodb://localhost/fruit';
 
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false});
 
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose connected to ${connectionString}`);
@@ -172,7 +172,7 @@ Also, have it redirect back to the fruits index page when deletion is complete
 
 ```javascript
 app.delete('/fruits/:id', (req, res)=>{
-    Fruit.findByIdAndRemove(req.params.id, (err, data)=>{
+    Fruit.findOneAndDelete(req.params.id, (err, data)=>{
         res.redirect('/fruits');//redirect back to fruits index
     });
 });
@@ -241,7 +241,7 @@ app.put('/fruits/:id', (req, res)=>{
     } else {
         req.body.readyToEat = false;
     }
-    Fruit.findByIdAndUpdate(req.params.id, req.body, (err, updatedModel)=>{
+    Fruit.findOneAndUpdate(req.params.id, req.body, (err, updatedModel)=>{
           res.redirect('/fruits');
     });
 });
