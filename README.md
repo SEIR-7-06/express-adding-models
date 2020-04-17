@@ -177,7 +177,7 @@ Also, have it redirect back to the fruits index page when deletion is complete
 
 ```javascript
 app.delete('/fruits/:id', (req, res)=>{
-    Fruit.findOneAndDelete(req.params.id, (err, data)=>{
+    Fruit.findByIdAndDelete(req.params.id, (err, deletedFruit)=>{
         res.redirect('/fruits');//redirect back to fruits index
     });
 });
