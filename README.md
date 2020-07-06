@@ -38,13 +38,12 @@ mongoose.connection.on('error', (err) => {
   console.log(err, 'mongoose error');
 });
 
+// Export Models
 module.exports = {
   Fruit: require('./Fruit'),
 };
 
 ```
-
-- require `./models` inside of `server.js`
 
 ## Create Fruits Model
 
@@ -68,6 +67,8 @@ module.exports = Fruit;
 ## Have Create Route Create data in MongoDB
 
 Inside server.js:
+
+- require `./models`
 
 ```javascript
 const Fruit = require('./models/fruits.js');
