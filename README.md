@@ -5,26 +5,26 @@
 ## Initialize a directory
 
 1. `mkdir models`
-1. `touch models/fruit.js
+1. `touch models/index.js
 
 
 
 ## Connect Express to Mongo
 
-1. `npm install mongoose --save`
-1. Inside db.js, inside of db folder.
+1. `npm i mongoose`
+1. Inside index.js, inside of models folder.
 
 ```javascript
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost/fruit';
+const connectionString = 'mongodb://localhost:27017/fruit';
 
-mongoose.connect(connectionString, { useNewUrlParser: true,
-                                     useUnifiedTopology: true,
-                                     useCreateIndex: true,
-                                     useFindAndModify: false
-                                    });
-
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose connected to ${connectionString}`);
@@ -37,14 +37,18 @@ mongoose.connection.on('disconnected', () => {
 mongoose.connection.on('error', (err) => {
   console.log(err, 'mongoose error');
 });
+
+module.exports = {
+  Fruit: require('./Fruit'),
+};
+
 ```
 
-- require `./db/db` inside of `server.js`
+- require `./models` inside of `server.js`
 
 ## Create Fruits Model
 
-1. `mkdir models`
-1. `touch models/fruits.js`
+1. `touch models/Fruit.js`
 1. Create the fruit schema
 
 ```javascript
