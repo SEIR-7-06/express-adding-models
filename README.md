@@ -5,7 +5,7 @@
 ## Initialize a directory
 
 1. `mkdir models`
-1. `touch models/index.js
+1. `touch models/index.js`
 
 
 
