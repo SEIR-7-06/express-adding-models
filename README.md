@@ -47,14 +47,19 @@ module.exports = {
 ```javascript
 const mongoose = require('mongoose');
 
+// Create the schema
+// - defines what a Fruit will look like
 const fruitSchema = new mongoose.Schema({
   name: { type: String, required: true },
   color: { type: String, required: true },
   readyToEat: Boolean,
 });
 
+// Create the model
+// - our interface for interacting with Fruit data
 const Fruit = mongoose.model('Fruit', fruitSchema);
 
+// Make the Fruit model available to other parts of my app
 module.exports = Fruit;
 ```
 
