@@ -15,8 +15,10 @@
 ```javascript
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost:27017/fruit';
+// Get the address to the Mongo database
+const connectionString = 'mongodb://localhost:27017/fruitdb';
 
+// Fire off the connection to the Mongo database
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,11 +26,14 @@ mongoose.connect(connectionString, {
   useFindAndModify: false,
 });
 
+// Listen for when we connect,
+// and when connected call the callback function
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose connected to ${connectionString} 🥭`);
 });
 
-// Export Models
+// Export the Fruit model from this file.
+// This way the index.js file is our entry point for all of our data needs.
 module.exports = {
   Fruit: require('./Fruit'),
 };
